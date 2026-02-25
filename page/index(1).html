@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>El Compa Chicharrones | Sabor Dominicano</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@300;400;600;700&display=swap');
+        
+        :root {
+            --primary: #e63946;
+            --secondary: #f1faee;
+            --accent: #ffb703;
+            --dark: #1d3557;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--secondary);
+            color: var(--dark);
+            line-height: 1.5;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .brand-font {
+            font-family: 'Bangers', cursive;
+            letter-spacing: 1px;
+        }
+
+        p { font-size: 0.9rem; }
+        @media (min-width: 768px) {
+            p { font-size: 1rem; }
+            .brand-font { letter-spacing: 2px; }
+        }
+
+        .menu-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .menu-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background-color: #f3f4f6;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        .hidden-section { display: none; }
+
+        .active-nav {
+            border-bottom: 3px solid #ffb703;
+            color: #ffb703;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in { animation: fadeIn 0.4s ease-out forwards; }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <header class="bg-white pt-6 pb-4 shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 flex flex-col items-center">
+            <div class="w-24 h-24 md:w-32 md:h-32 mb-3 bg-white rounded-full flex items-center justify-center overflow-hidden border-4 border-red-600 shadow-md">
+                <img src="https://i.ibb.co/qY0X0Sqh/logo.jpg" alt="Logo El Compa" class="w-full h-full object-cover">
+            </div>
+            <h1 class="brand-font text-2xl sm:text-3xl md:text-4xl text-red-600 text-center leading-tight">
+                EL COMPA CHICHARRONES
+            </h1>
+            <p class="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-[0.2em]">Sabor Dominicano de Verdad</p>
+        </div>
+
+        <nav class="mt-4 border-t border-gray-100">
+            <div class="container mx-auto flex justify-around py-3 font-bold uppercase text-[11px] md:text-xs">
+                <button onclick="showSection('home')" class="nav-btn active-nav px-2" data-target="home">Inicio</button>
+                <button onclick="showSection('menu')" class="nav-btn px-2" data-target="menu">Menú</button>
+                <button onclick="showSection('contact')" class="nav-btn px-2" data-target="contact">Contacto</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-6 max-w-4xl">
+        
+        <section id="home-section" class="fade-in">
+            <div class="relative rounded-3xl overflow-hidden mb-6 shadow-xl h-56 md:h-96">
+                <video 
+                    class="w-full h-full object-cover" 
+                    autoplay 
+                    muted 
+                    loop 
+                    playsinline
+                    poster="portada.jpg">
+                    <source src="chicharron_cerdo.mp4" type="video/mp4">
+                    <img src="portada.jpg" alt="Chicharrón" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1000&q=80'">
+                </video>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6">
+                    <div class="text-white">
+                        <h2 class="text-2xl md:text-5xl font-bold mb-1">¡Crujientes!</h2>
+                        <p class="text-yellow-400 text-sm md:text-lg font-semibold italic">El mejor sabor dominicano.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-3 mb-8">
+                <button onclick="showSection('menu')" class="bg-red-600 text-white p-5 rounded-2xl font-bold text-lg shadow-lg active:scale-95 flex items-center justify-center">
+                    <i class="fas fa-utensils mr-3"></i> VER EL MENÚ
+                </button>
+                <a href="https://wa.me/18498473780" class="bg-green-500 text-white p-5 rounded-2xl font-bold text-lg shadow-lg active:scale-95 flex items-center justify-center">
+                    <i class="fab fa-whatsapp mr-3"></i> ORDENAR AHORA
+                </a>
+            </div>
+        </section>
+
+        <section id="menu-section" class="hidden-section fade-in">
+            <h2 class="brand-font text-3xl text-center text-red-600 mb-6 italic">El Menú del Compa</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8">
+                <div class="menu-card">
+                    <img src="chicharron_cerdo2.jpeg" class="menu-img" onerror="this.src='https://placehold.co/400x200?text=Chicharrón'">
+                    <div class="p-4">
+                        <div class="flex justify-between items-center mb-1">
+                            <h3 class="font-bold text-lg uppercase">Chicharrón de Cerdo</h3>
+                            <span class="bg-red-100 text-red-600 px-2 py-0.5 rounded text-[10px] font-bold">TOP</span>
+                        </div>
+                        <p class="text-gray-600 text-xs md:text-sm">Piel súper crujiente y carne jugosa.</p>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <img src="costillitas.jpg" class="menu-img" onerror="this.src='https://placehold.co/400x200?text=Costillitas'">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg uppercase mb-1">Costillitas de Cerdo</h3>
+                        <p class="text-gray-600 text-xs md:text-sm">Sazonadas con nuestra receta secreta.</p>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <div class="relative w-full h-[180px] overflow-hidden bg-black">
+                        <div class="absolute top-2 left-2 bg-red-600 text-white text-[9px] font-bold px-2 py-1 rounded z-10 uppercase">
+                            ¡Mira qué final!
+                        </div>
+                        
+                        <video 
+                            class="w-full h-full object-cover" 
+                            autoplay 
+                            muted 
+                            loop 
+                            playsinline
+                            poster="pancetas_rellenas.jpg"> <source src="video-panceta.mp4" type="video/mp4">
+                            <img src="pancetas_rellenas.jpg" alt="Pancetas"> </video>
+                    </div>
+
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg uppercase mb-1">Pancetas con Moro</h3>
+                        <p class="text-gray-600 text-xs md:text-sm">Pancetas rellenas acompañadas de nuestro tradicional moro dominicano.</p>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <img src="https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/blogs/2147718531/images/ad27ea-535-660-c5-b6c81376d807_arroz_toieta_perro_azafra.PNG" class="menu-img" onerror="this.src='https://placehold.co/400x200?text=Arroz+beicon'">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg uppercase mb-1">Arroz beicon</h3>
+                        <p class="text-gray-600 text-xs md:text-sm">Un clásico que no puede faltar.</p>
+                    </div>
+                </div>
+
+                <div class="menu-card">
+                    <div class="absolute top-3 right-3 bg-yellow-500 text-red-900 text-[9px] font-bold px-2 py-1 rounded-full shadow-md z-10 uppercase">
+                        <i class="fas fa-calendar-alt mr-1"></i> Por Encargo
+                    </div>
+                    <img src="pierna_cerdo.jpg" class="menu-img" onerror="this.src='https://placehold.co/400x200?text=Pierna+de+Cerdo'">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg uppercase mb-1">Pierna de Cerdo</h3>
+                        <p class="text-gray-600 text-xs md:text-sm">Horneada lentamente. Perfecta para eventos.</p>
+                    </div>
+                </div>
+
+                <div class="col-span-1 sm:col-span-2 mt-6">
+                    <h3 class="brand-font text-2xl text-red-600 text-center mb-4 italic">Guarniciones</h3>
+                </div>
+
+                <div class="menu-card">
+                    <img src="https://mojo.generalmills.com/api/public/content/hcIw3ZXl0kG9nd7NgKFZCA_gmi_hi_res_jpeg.jpeg?v=a0177c38&t=16e3ce250f244648bef28c5949fb99ff" class="menu-img" style="height: 120px;" onerror="this.src='https://placehold.co/400x200?text=Tostones'">
+                    <div class="p-3"><h3 class="font-bold uppercase text-sm">Tostones Crujientes</h3></div>
+                </div>
+
+                <div class="menu-card">
+                    <img src="https://familiakitchen.com/wp-content/uploads/2023/08/IMG_9270-Yuca-con-mojo.jpg.webp" class="menu-img" style="height: 120px;" onerror="this.src='https://placehold.co/400x200?text=Yuca'">
+                    <div class="p-3"><h3 class="font-bold uppercase text-sm">Yuca con Cebollita</h3></div>
+                </div>
+
+                <div class="menu-card">
+                    <img src="https://healthiersteps.com/wp-content/uploads/2019/09/guineos-en-escabeche.jpg" class="menu-img" style="height: 120px;" onerror="this.src='https://placehold.co/400x200?text=Guineitos'">
+                    <div class="p-3"><h3 class="font-bold uppercase text-sm">Guineitos Hervidos</h3></div>
+                </div>
+
+                <div class="menu-card">
+                    <img src="https://content.jwplatform.com/thumbs/ronn9n2u-720.jpg" class="menu-img" style="height: 120px;" onerror="this.src='https://placehold.co/400x200?text=Batata'">
+                    <div class="p-3"><h3 class="font-bold uppercase text-sm">Batata Frita</h3></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact-section" class="hidden-section fade-in">
+            <div class="bg-white rounded-3xl p-8 shadow-xl text-center border-t-8 border-red-600">
+                <h2 class="brand-font text-3xl text-red-600 mb-6">Pide por aquí</h2>
+                <div class="space-y-3">
+                    <a href="https://wa.me/18498473780" class="flex items-center justify-center bg-green-500 text-white p-4 rounded-xl active:scale-95 transition">
+                        <i class="fab fa-whatsapp text-xl mr-3"></i>
+                        <span class="font-bold text-lg">849-847-3780</span>
+                    </a>
+                    <a href="https://instagram.com/elcompa_chicharronrd" target="_blank" class="flex items-center justify-center bg-gradient-to-r from-purple-600 to-pink-500 text-white p-4 rounded-xl active:scale-95 transition">
+                        <i class="fab fa-instagram text-xl mr-3"></i>
+                        <span class="font-bold text-lg">Instagram</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-8 mt-8 text-center">
+        <p class="brand-font text-xl text-red-500">EL COMPA</p>
+        <p class="text-[10px] text-gray-500 uppercase tracking-widest">Sabor Dominicano © 2024</p>
+    </footer>
+
+    <a href="https://wa.me/18498473780" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        function showSection(sectionId) {
+            document.getElementById('home-section').classList.add('hidden-section');
+            document.getElementById('menu-section').classList.add('hidden-section');
+            document.getElementById('contact-section').classList.add('hidden-section');
+            
+            document.getElementById(sectionId + '-section').classList.remove('hidden-section');
+            
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active-nav');
+                if(btn.getAttribute('data-target') === sectionId) btn.classList.add('active-nav');
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
